@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+       body{
+            background:#000;
+            overflow:hidden;
+       }
+       .box{
+            width: 1200px;
+            height: 600px;
+            perspective:10000px;
+            margin:50px auto;
+            border: 1px solid #fff;
+            position: relative;
+       }
+       h1{
+           color:#fff;
+       }
+       .box .unit{
+            width: 1200px;
+            height: 600px;
+            transform-style:preserve-3d;
+            transform:rotateY(1deg);
+            cursor:default;
+            user-select: none;
+       }
+        .box .unit>div{
+            width: 25px;
+            height: 40px;
+            position: absolute;
+            left:587.5px;
+            top:280px;
+            transition:all 1s ease 0s;
+            transform:scale(0.6);
+        }
+        button{
+            width:100px;
+            height:50px;
+            background-color: #fff;
+            border-radius:20px;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>点击button</h1>
+    <div class="box">
+        <div class="unit">
+        </div>
+    </div>
+    <button>球</button>
+    <button>螺旋</button>
+    <button>金字塔</button>
+    <button>矩阵</button>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+    var arrColorArr = ["aqua","silver", "gold","teal","#d40045","#7d4f5b","#d7a4b6","black", "blue", "fuchsia", "gray", "green", "lime", "maroon", "navy", "olive", "purple", "red",   "white", "yellow","skyblue","pink","yellowgreen","#FF5722","#01AAED","#FFB800","#5FB878","#009688","#ee0026","#ff590b","#ff7f00","#ffcc00","#ffe600","#cce708","#99cf15","#66b82b","#33a23d","#008f62","#008678","#007a87","#ca1028","#a45aaa","#df4c94","#9e002c","#990f4f","#232166","#531460","#740050","#073e73","#fa7482","#FDB46C","#b3de69","#67b2ca","#679fca","#807dba","#b172b6","#c95f6a","#e170a4","#66ac78","#ccba48","#4e9b86","#3a2c2e","#aac09b","#91b8ac","#9191ad","#fbb4c4","#e6f5b0","#b3d7dd","#C09EB3","#b3e2d8","#66ac78"]
+
+    for (var i = 0; i < 500; i++) {
+
+        $("<div></div>").css({
+            "backgroundColor":arrColorArr[parseInt(Math.random()*arrColorArr.length)]
+        }).appendTo(".unit");
+    };
+
+    // 变成球
+
+    function  ball() {
+
+        for (var i = 0; i < 500; i++) {
+
+            // 我们确定有25个维度。每一层有20个div;
+            // div是哪一个维度上的。
+            var cs = parseInt(i/20);
+            // 每一个维度的与Y轴的角度
+            var weiduArr = [90,82.5,75,67.5,60,52.5,45,37.5,30,22.5,15,7.5,0,-7.5,-15,-22.5,-30,-37.5,-45,-52.5,-60,-67.5,-75,-82.5,-90];
+            // 维度对应的角度
+            var wdreg = weiduArr[cs];
+            // 每一层上的div各自有一个角度，形成一个圆环
+            var jd = i % 20 * (360/20);
+
+            $(".box .unit>div").eq(i).css({
+                "transform":"rotateY("+jd+"deg) rotateX("+wdreg+"deg) translateZ(280px) scale(0.6)"
+            })
+        };
+    };
+    // 螺旋
+    function luoxuan(){
+        for (var i = 0; i < 500; i++) {
+
+            $(".box .unit>div").eq(i).css({
+                "transform":"rotateY("+(i*5)+"deg) translateY("+(1*i-250)+"px) translateZ(500px)"
+            })
+        };
+    };
+    // 金字塔
+    function jinzita(){
+        for (var i = 0; i < 500; i++) {
+
+            $(".box .unit>div").eq(i).css({
+                "transform":"rotateY("+(i*5)+"deg) translateY("+(1*i-250)+"px) translateZ("+i+"px)"
+            })
+        };
+    };
+    // 矩阵
+    function juzhen(){
+        for (var i = 0; i < 500; i++) {
+            // 一个div在矩阵的位置，由面、行、列
+            //面
+            var mian = parseInt(i/100);
+            // 是面上的第几行
+            // div在自己面上的序列号 i - mian * 100
+            var hang =  parseInt( ( i - mian * 100 ) / 10 );
+            // 第几列
+            var lie = i % 10;
+
+            $(".box .unit>div").eq(i).css({
+                "transform":"translateZ("+(mian * 100)+"px) translateY("+(hang*60-260)+"px) translateX("+(lie*50-360)+"px)"
+            })
+
+        };
+    }
+    var deg = 0;
+    var auto_timer= setInterval(zhuan,50)
+
+    function zhuan(){
+        deg++;
+        $(".box .unit").css({"transform":"rotateY("+deg+"deg)"});
+    }
+    $("button:nth-of-type(1)").click(ball);
+    $("button:nth-of-type(2)").click(luoxuan);
+    $("button:nth-of-type(3)").click(jinzita);
+    $("button:nth-of-type(4)").click(juzhen);
+
+    $(".box").mouseenter(function(event) {
+        clearInterval(auto_timer);
+    });
+    $(".box").mouseleave(function(event) {
+        clearInterval(auto_timer);
+        auto_timer= setInterval(zhuan,50)
+    });
+    var rotateX=0,rotateY=0,dX=0,dY=0,timer=null;
+    //鼠标拖拽
+    document.onmousedown = function(event){
+
+        // 鼠标的落点
+        var oldX = event.clientX;
+        var oldY = event.clientY;
+
+        this.onmousemove = function(event){
+            dX = event.clientX - oldX;
+            dY = event.clientY - oldY;
+
+            rotateX += dY*0.1;
+            rotateY += dX*0.1;
+            console.log(rotateX,rotateY)
+            document.querySelector(".unit").style.transform = "rotateX("+rotateX+"deg) rotateY("+rotateY+"deg)";
+
+            oldX = event.clientX;
+            oldY = event.clientY;
+        }
+    };
+    document.onmouseup = function(){
+        this.onmousemove = null;
+
+        // 我们需要模拟惯性
+        timer = setTimeout(function(){
+
+            if( Math.abs(dX) > 1 || Math.abs(dY) > 1){
+                rotateX += dY*0.1;
+                rotateY += dX*0.1;
+
+                document.querySelector(".unit").style.transform = "rotateX("+rotateX+"deg) rotateY("+rotateY+"deg)";
+
+                dX *= 0.9;
+                dY *= 0.9;
+
+                timer = setTimeout(arguments.callee,30)
+            }
+
+
+        },30)
+    }
+</script>
+

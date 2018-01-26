@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            border:0;
+        }
+        ol, ul ,li{list-style: none;}
+        .focusSlider{
+            width:100%;
+            height: 350px;
+            position: relative;
+            border: 1px solid #000;
+        }
+        .focusSlider .scroll-img li{
+            position: absolute;
+            width:100%;
+            height: 100%;
+            top:0px;
+            left:0px;
+            display:none;
+            background:#08050d;
+        }
+        .focusSlider .scroll-img li.cur{
+            display:block;
+        }
+        .focusSlider .scroll-img li img{
+            width:1200px;
+            height: 350px;
+            position: absolute;
+            top:0px;
+            left:50%;
+            margin-left:-600px;
+        }
+        .innerC{
+            width:846px;
+            height: 54px;
+            position: absolute;
+            bottom:10px;
+            left:50%;
+            transform:translateX(-50%);
+        }
+        .innerC .ctrBtn a{
+            position: absolute;
+            width:31px;
+            height: 46px;
+            top:50%;
+            transform:translateY(-50%);
+            z-index:10;
+        }
+        .innerC .ctrBtn a:nth-child(1){
+            left:-30px;
+            background:url('images/ctrl/prev.png');
+        }
+        .innerC .ctrBtn a:nth-child(2){
+            right:-30px;
+            background:url('images/ctrl/next.png');
+        }
+        .innerC .ctrBtn a:nth-child(1):hover{
+            left:-30px;
+            background:url('images/ctrl/prev-h.png');
+        }
+        .innerC .ctrBtn a:nth-child(2):hover{
+            right:-30px;
+            background:url('images/ctrl/next-h.png');
+        }
+        .innerC .navscoller{
+            height: 54px;
+            width: 846px;
+            position: absolute;
+            left:50%;
+            transform:translateX(-50%);
+            top:0px;
+            overflow:hidden;
+        }
+        .innerC .navscoller .navscollerUl{
+            width:999999999px;
+            position: absolute;
+            left:0px;
+            top:0px;
+        }
+        .innerC .navscoller ul{
+            width:1060px;
+            height: 54px;
+            float: left;
+
+        }
+        .innerC .navscoller ul li{
+            float: left;
+            width:94px;
+            height: 54px;
+            margin:0px 6px;
+
+        }
+        .innerC .navscoller ul li a{
+            width:90px;
+            height: 45px;
+            display:block;
+            padding:7px 2px 2px;
+        }
+        .innerC .navscoller ul li a:hover,.innerC .navscoller ul li.cur a{
+            background:url('images/ctrl/lion.png');
+
+        }
+    </style>
+</head>
+<body>
+    <div class="focusSlider">
+        <ul class="scroll-img">
+            <li data-color="#08050d" class="cur"><a href="javascript:void(0);"><img src="images/big/bd_ (1).jpg" alt="" /></a></li>
+            <li data-color="#21231d"><a href="javascript:void(0);"><img src="images/big/bd_ (2).jpg" alt="" /></a></li>
+            <li data-color="#443e40"><a href="javascript:void(0);"><img src="images/big/bd_ (3).jpg" alt="" /></a></li>
+            <li data-color="#040507"><a href="javascript:void(0);"><img src="images/big/bd_ (4).jpg" alt="" /></a></li>
+            <li data-color="#141416"><a href="javascript:void(0);"><img src="images/big/bd_ (5).jpg" alt="" /></a></li>
+            <li data-color="#fbbe41"><a href="javascript:void(0);"><img src="images/big/bd_ (6).jpg" alt="" /></a></li>
+            <li data-color="#000000"><a href="javascript:void(0);"><img src="images/big/bd_ (7).jpg" alt="" /></a></li>
+            <li data-color="#f4cce5"><a href="javascript:void(0);"><img src="images/big/bd_ (8).jpg" alt="" /></a></li>
+            <li data-color="#ce4969"><a href="javascript:void(0);"><img src="images/big/bd_ (9).jpg" alt="" /></a></li>
+            <li data-color="#fafafa"><a href="javascript:void(0);"><img src="images/big/bd_ (10).jpg" alt="" /></a></li>
+        </ul>
+        <div class="innerC">
+            <div class="ctrBtn">
+                <a href="javascript:void(0);"></a>
+                <a href="javascript:void(0);"></a>
+            </div>
+            <div class="navscoller">
+                <div class="navscollerUl">
+                    <ul>
+                        <li class="cur"><a href="javascript:void(0);"><img src="images/small/sbg_ (1).jpg" alt=""></a></li>
+                        <li><a href="javascript:void(0);"><img src="images/small/sbg_ (2).jpg" alt=""></a></li>
+                        <li><a href="javascript:void(0);"><img src="images/small/sbg_ (3).jpg" alt=""></a></li>
+                        <li><a href="javascript:void(0);"><img src="images/small/sbg_ (4).jpg" alt=""></a></li>
+                        <li><a href="javascript:void(0);"><img src="images/small/sbg_ (5).jpg" alt=""></a></li>
+                        <li><a href="javascript:void(0);"><img src="images/small/sbg_ (6).jpg" alt=""></a></li>
+                        <li><a href="javascript:void(0);"><img src="images/small/sbg_ (7).jpg" alt=""></a></li>
+                        <li><a href="javascript:void(0);"><img src="images/small/sbg_ (8).jpg" alt=""></a></li>
+                        <li><a href="javascript:void(0);"><img src="images/small/sbg_ (9).jpg" alt=""></a></li>
+                        <li><a href="javascript:void(0);"><img src="images/small/sbg_ (10).jpg" alt=""></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+    // 获取节点
+    var $scrollimgLis = $(".scroll-img li");
+    var $navscrollUl = $(".navscollerUl");
+    var $leftBtn = $(".innerC .ctrBtn a:nth-child(1)");
+    var $rightBtn = $(".innerC .ctrBtn a:nth-child(2)");
+    var $focusSlider = $(".focusSlider");
+    // 克隆节点
+    $(".navscoller .navscollerUl ul").clone().appendTo(".navscollerUl");
+    //获取克隆完后的小图li
+    var $navscollerLis = $(".navscoller ul li");
+    // 信号量
+    var i = 0; idx = 0,speed=300;
+    // 右按钮
+    $rightBtn.click(rightBtnHandler);
+    $leftBtn.click(leftBtnHandler);
+
+    function rightBtnHandler(){
+        if($navscrollUl.is(":animated")) return;
+        idx++;
+        $navscrollUl.animate({"left":-106*idx}, speed,function(){
+            if(idx >= 10){
+                $navscrollUl.css("left",0);
+                idx = 0;
+            }
+        });
+    }
+    function leftBtnHandler (){
+        if($navscrollUl.is(":animated")) return;
+        idx--;
+        if(idx < 0){
+            idx = 9;
+            $navscrollUl.css("left",-1060);
+        }
+        $navscrollUl.animate({"left":-106*idx}, speed);
+    };
+    // 点击小图的时候，切换
+    $navscollerLis.mouseenter(function(event) {
+        i = $(this).index();
+        navscrollLis(i);
+    });
+    // 大图的呼吸动画
+    function navscrollLis(i){
+
+        $scrollimgLis.eq(i).stop(true).css("backgroundColor",$scrollimgLis.eq(i).attr("data-color")).fadeIn().siblings().stop(true).fadeOut();
+
+        $(".navscoller ul").each(function(){
+            $(this).children('li').eq(i).addClass('cur').siblings().removeClass('cur');
+        })
+    };
+    // 定时器
+    var timerScroll = setInterval(autoScroll,2000)
+
+    function autoScroll(){
+        i++;
+        if( i > 9){
+            i = 0;
+        };
+        navscrollLis(i)
+        rightBtnHandler();
+    };
+    $focusSlider.mouseenter(function(event) {
+       clearInterval(timerScroll);
+    });
+
+    $focusSlider.mouseleave(function(event) {
+        for (var k = 0; k < $scrollimgLis.length; k++) {
+            // 通过left的值，来确定谁带的cur不可见
+            if( parseInt($navscrollUl.css("left")) == -106*k ){
+
+                $navscollerLis.each(function(i){
+
+                    if($(this).hasClass("cur")){
+
+                        if( k ){
+                            if(i == (1 + k-1)|| i== (0 +k-1)){
+                               i = 0;
+                               idx = 0;
+                                $navscrollUl.css({"left":0});
+                                navscrollLis(i);
+                            }else{
+                                i = 0;
+                                idx = 0;
+                                 $navscrollUl.css({"left":0});
+                                 navscrollLis(i);
+                            }
+
+                       }
+                    }
+                })
+
+            };
+        };
+
+
+       clearInterval(timerScroll);
+       timerScroll = setInterval(autoScroll,2000);
+    });
+</script>
