@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../asset/jquery.js"></script>
+	<style>
+*{
+	margin: 0;padding: 0;
+}
+ul,ol{
+	list-style: none;
+}
+.outer{
+	position: relative;
+	width: 500px;
+	height: 300px;
+	margin:150px auto;
+	perspective:8000px;
+
+}
+ img{
+ 	position: absolute;
+ 	border: 0;
+ 	width: 500px;
+ 	height: 500px;
+ }
+ ul{
+ 	width: 500px;
+ 	height: 500px;
+ 	transform-style:preserve-3d;
+ 	perspective:8000px;
+ 	transition:all 7s ease 0s;
+ 	
+ }
+ .outer:hover ul{
+	transform:rotatex(360deg) rotatey(360deg);
+ }
+ul li{
+
+	position: absolute;
+	top:0;
+	left: 0;
+	width: 500px;
+	height: 500px;
+ 	opacity:0.5;
+ 	-webkit-background-size: contain;
+ 	background-size: contain;
+}
+li:nth-child(1){
+	background-image: url("../images/1.jpg");
+	transform:translatez(250px);
+}
+li:nth-child(2){
+	background-image: url("../images/2.jpg");
+	transform:rotatey(90deg) translatez(250px);
+}
+li:nth-child(3){
+	background-image: url("../images/3.jpg");
+	transform:rotatex(90deg) translatez(250px);
+}
+li:nth-child(4){
+	background-image: url("../images/4.jpg");
+	transform:rotatey(-90deg) translatez(250px);
+}
+li:nth-child(5){
+	background-image: url("../images/5.jpg");
+	transform:rotatex(180deg) translatez(250px);
+}
+li:nth-child(6){
+	background-image: url("../images/5.jpg");
+	transform:rotatex(-90deg) translatez(250px);
+}
+
+	</style>
+</head>
+<body>
+<div class="outer">
+	<ul id="ul">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<div class="btn">
+		<a href="#" class="left" id="leftbtn"></a>
+		<a href="#" class="right" id="rightbtn"></a>
+	</div> 
+
+</div>
+<script>
+
+</script>
+</body>
+</html>
+<!-- 
+	var ulis=document.getElementById("ul").getElementsByTagName("li")//图片的li
+	var olis=document.getElementById("ol").getElementsByTagName("li")//元点的li
+	var leftbtn=document.getElementById("leftbtn")
+	var rightbtn=document.getElementById("rightbtn")
+	//信号量
+var idx=0;
+	leftbtn.onclick=function(){
+		idx--;
+		if(idx<0){
+			idx=5;
+		}
+		fun()
+		
+	}
+	rightbtn.onclick=function(){
+		idx++;
+		if(idx>5){
+			idx=0;
+		}
+		fun()
+	
+	}
+function fun(){
+	$("li").eq(idx).addClass("current").siblings().removeClass("current")
+}
+ -->

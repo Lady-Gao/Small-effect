@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{margin: 0;padding: 0  ;}
+    .ball{
+        position:absolute;
+        
+        width:15px;
+        height: 15px;
+        border-radius: 50%;
+    }
+    
+    div{
+        position: relative;
+        width: 400px;
+        height: 200px;
+        margin: 100px;
+        border:1px solid #000;
+   
+    }
+    </style>
+</head>
+<body>
+    <p id="info"></p>
+    <div id="box"></div>
+    <script>
+       // new Ball(100,100,20)
+        function Ball(x,y,r){
+            this.x=x;
+            this.y=y;
+            this.r=r;
+            do{
+                this.dx=Math.random()*8-4;
+                this.dy=Math.random()*8-4;
+            }while(this.dx==0&&this.dy==0) ;
+            this.init();
+            
+           arr.push(this)            
+        }
+        Ball.prototype.init=function(){
+            var box=document.getElementById("box");
+            this.dom=document.createElement("p");
+            this.dom.className="ball"
+            box.appendChild(this.dom)
+            this.render();
+        
+    }
+
+    Ball.prototype.render=function(){
+        this.dom.style.top = this.y + "px";
+        this.dom.style.left = this.x + "px";
+        this.dom.style.width=this.r*2;
+       this.dom.style.background = "rgba(" + parseInt(Math.random() * 255) + "," + parseInt(Math.random() * 255) + "," + parseInt(Math.random() * 255) + "," + Math.random() + ")"
+        document.getElementById("box") 
+    }
+    Ball.prototype.update=function(){
+        this.x+=this.dx
+        this.y+=this.dy
+        this.dom.style.top = this.y + "px";
+        this.dom.style.left = this.x + "px";
+       if(this.x<=0||this.x>=(400-this.r*2)){
+           this.dx=-this.dx
+    }
+    if(this.y<=0||this.y>=(200-this.r*2)){
+        this.dy=-this.dy
+       }
+    };
+    var arr=[]
+    var f=0;
+    new Ball(100,100,10,)
+//定时器
+    setInterval(function(){
+        for (let i = 0; i < arr.length; i++) {
+        arr[i].update();
+        }
+        f++;
+        if(f<100){
+            new Ball(100,100,10)
+        }
+    },20)
+    
+  
+    
+    </script>
+</body>
+</html>
